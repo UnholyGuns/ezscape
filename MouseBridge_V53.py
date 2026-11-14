@@ -67,7 +67,9 @@ MOUSE_DEVICE = "/dev/input/event4"
 HID_DEVICE = "/dev/hidg0"
 # Optional pattern folder: --pattern drawCircle (or --pattern drawRectangle).
 # Existing default remains unchanged when --pattern is omitted.
-BASE_RECORDING_DIR = "/home/fergy/mouse_recordings"
+BASE_RECORDING_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "mouse_recordings"
+)
 _parser = argparse.ArgumentParser(description="USB HID mouse bridge")
 _parser.add_argument("--pattern", default=None,
                      help="Existing or new pattern subdirectory under mouse_recordings")
