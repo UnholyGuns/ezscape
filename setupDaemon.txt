@@ -1,0 +1,26 @@
+sudo nano /etc/systemd/system/mouse-gadget.service
+
+
+
+[Unit]
+Description=USB HID Mouse
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/setup_mouse.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+cd ~/MouseControllerSoft
+
+sudo cp setup_mouse.sh /usr/local/sbin/setup_mouse.sh
+sudo chmod 755 /usr/local/sbin/setup_mouse.sh
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now mouse-gadget.service
+
+systemctl status mouse-gadget.service
